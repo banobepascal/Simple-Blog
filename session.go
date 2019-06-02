@@ -27,7 +27,7 @@ func getUser(w http.ResponseWriter, req *http.Request) user {
 	return u
 }
 
-func alreadyLoggedIn(w http.ResponseWriter, req *http.Request) bool {
+func alreadyLoggedIn(req *http.Request) bool {
 	c, err := req.Cookie("session")
 	if err != nil {
 		return false
