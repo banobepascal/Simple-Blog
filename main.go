@@ -24,7 +24,7 @@ func init() {
 
 func main() {
 
-	http.HandleFunc("/userPages", userPage)
+	http.HandleFunc("/userPage", userPage)
 	http.HandleFunc("/", signup)
 	http.Handle("/css/", http.FileServer(http.Dir("public")))
 	http.Handle("/img/", http.FileServer(http.Dir("public")))
@@ -75,7 +75,7 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		dbUsers[un] = u
 
 		// Redirect
-		http.Redirect(w, req, "/", http.StatusSeeOther)
+		http.Redirect(w, req, "/userPage", http.StatusSeeOther)
 		return
 	}
 	tpl.ExecuteTemplate(w, "signup.html", nil)
