@@ -31,6 +31,7 @@ func main() {
 	http.HandleFunc("/userPage", userPage)
 	http.HandleFunc("/", signup)
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/logout", logout)
 	http.Handle("/css/", http.FileServer(http.Dir("public")))
 	http.Handle("/img/", http.FileServer(http.Dir("public")))
 	http.Handle("/js/", http.FileServer(http.Dir("public")))
@@ -128,5 +129,25 @@ func login(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	tpl.ExecuteTemplate(w, "login.html", nil)
+
+}
+
+func logout(w http.ResponseWriter, req *http.Request) {
+	if !alreadyLoggedIn(req) {
+		http.Redirect(w, req, "/", http.StatusSeeOther)
+		return
+	}
+	c, _ := req.Cookie("session")
+	// delete cookie
+	delete(dbSessions, c.Value)
+	// remove cookie
+	c = &http.Cookie{
+		Name:   "session",
+		Value:  "",
+		MaxAge: -1,
+	}
+	http.SetCookie(w, c)
+	http.Redirect(w, req, "/login", http.StatusSeeOther)
+	return
 
 }
