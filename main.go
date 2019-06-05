@@ -64,7 +64,7 @@ func signup(w http.ResponseWriter, req *http.Request) {
 
 		// username token
 		if _, ok := dbUsers[un]; ok {
-			http.Error(w, "username is invalid", http.StatusSeeOther)
+			http.Error(w, "username is already taken", http.StatusSeeOther)
 			return
 		}
 
