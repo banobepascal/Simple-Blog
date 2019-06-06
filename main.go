@@ -77,12 +77,14 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		http.SetCookie(w, c)
 		dbSessions[c.Value] = un
 
-		// store user in dbUsers
+		// encrypt password
 		bs, err := bcrypt.GenerateFromPassword([]byte(p), bcrypt.MinCost)
 		if err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
 		}
+
+		// store user in dbUsers
 		u := user{un, e, bs}
 		dbUsers[un] = u
 
