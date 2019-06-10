@@ -47,7 +47,7 @@ func userPage(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
 	}
-	tpl.ExecuteTemplate(w, "generic.html", u)
+	tpl.ExecuteTemplate(w, "index.html", u)
 }
 
 func signup(w http.ResponseWriter, req *http.Request) {
