@@ -1,5 +1,5 @@
 *.js linguist-detectable=false
 *.html linguist-detectable=false
-*.css linguist-detectable=false
+*.CSS linguist-detectable=false
 *.php linguist-detectable=false
 *.Go linguist-detectable=true
