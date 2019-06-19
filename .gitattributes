@@ -2,3 +2,4 @@
 *.html linguist-detectable=false
 *.css linguist-detectable=false
 *.php linguist-detectable=false
+*.Go linguist-detectable=true
